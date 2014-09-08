@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="{% static 'leaflet/plugins/leaflet.draw/dist/leaflet.draw.css' %}">
 
     <!-- Leaflet Geocoder -->
-    <link rel="stylesheet" href="{% static 'leaflet/plugins/leaflet-control-geocoder/Control.Geocoder.css' %}"> 
+    <link rel="stylesheet" href="{% static 'leaflet/plugins/leaflet-control-geocoder/Control.Geocoder.css' %}">
+
+    <!-- WebGL heatmap -->
+    <link rel="stylesheet" href="{% static 'leaflet/plugins/webgl-heatmap/css/shCoreEclipse.css' %}">
+    
 {% endblock %}
 
 {% block headerJS %}
@@ -29,7 +33,11 @@
     <script src="{% static 'leaflet/plugins/maki-markers/Leaflet.MakiMarkers.js' %}"></script>
 
     <!-- Load heatmap -->
-    <script src="{% static 'leaflet/plugins/leaflet-heat/leaflet-heat.js' %}"></script>
+    <!-- <script src="{% static 'leaflet/plugins/leaflet-heat/leaflet-heat.js' %}"></script> -->
+    <script src="{% static 'leaflet/plugins/webgl-heatmap/js/shCore.js' %}"></script>
+    <script src="{% static 'leaflet/plugins/webgl-heatmap/js/shBrushJScript.js' %}"></script>
+    <script src="{% static 'leaflet/plugins/webgl-heatmap/js/webgl-heatmap.js' %}"></script>
+    <script src="{% static 'leaflet/plugins/webgl-heatmap/js/webgl-heatmap-leaflet.js' %}"></script>
 
     <!-- Load draw pluging -->
     <script src="{% static 'leaflet/plugins/leaflet.draw/src/Leaflet.draw.js' %}"></script>

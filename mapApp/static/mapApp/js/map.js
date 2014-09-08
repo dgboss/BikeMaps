@@ -61,9 +61,14 @@ var incidentData = new L.MarkerClusterGroup({
     alertAreas = new L.FeatureGroup([]),
 
     // Heatmap layer corresponding to all accident data
-    heatMap = L.heatLayer([], {
-        radius: 40,
-        blur: 20,
+    // heatMap = L.heatLayer([], {
+    //     radius: 40,
+    //     blur: 20,
+    // }),
+    heatMap = new L.TileLayer.WebGLHeatMap({ 
+        size: 300,
+        opacity: 0.4
+        // alphaRange: 0.5
     }),
 
     locationGroup,
@@ -120,7 +125,8 @@ function initialize(mobile) {
         // Police data
         L.geoJson(policeData, {
             pointToLayer: function(feature, latlng) {
-                heatMap.addLatLng(latlng);
+                // heatMap.addLatLng(latlng)
+                heatMap.addDataPoint(latlng.lat, latlng.lng, 50);
 
                 return L.marker(latlng, {
                     icon: icons["officialIcon"]
@@ -144,7 +150,8 @@ function initialize(mobile) {
         // ICBC Data
         L.geoJson(icbcData, {
             pointToLayer: function(feature, latlng) {
-                heatMap.addLatLng(latlng);
+                // heatMap.addLatLng(latlng)
+                heatMap.addDataPoint(latlng.lat, latlng.lng, 50);
 
                 return L.marker(latlng, {
                     icon: icons["officialIcon"]
@@ -359,7 +366,8 @@ function locateUser(setView, watch) {
 // Purpose: Add a given latlng poing with the given information to the map. 
 // 		Add pk for easy lookup of marker for admin tasks
 function getPoint(latlng, type, pk, popupText) {
-    heatMap.addLatLng(latlng);
+    // heatMap.addLatLng(latlng)
+    heatMap.addDataPoint(latlng[0], latlng[1], 50);
 
     var icon, dataset;
     if (type === "Collision" || type === "Fall") {
