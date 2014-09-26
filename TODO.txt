@@ -3,11 +3,15 @@
 ###HIGH PRIORITY
 * Email alerts monthly
 * Mobile reporting
+* Hazard deletion
+* Change header font to faktos
+* Find out why firewall says that we're pron?
 
 ###LOWER PRIORITY
+* opt in for emails (double opt in if possible)
+* add bikelanes from OCM
 * add new alerts badge to navbar bell
 * Option to report for different person
-* Write up readme
 * Documentation for future devs
 * improve incidents heatmap
 * flagged comment alerts for admins
@@ -19,7 +23,6 @@
 * Leaflet draw does not work for mobile (currently disabled for these users)
 * If a point is deleted by an admin, notification related to that point are not deleted
 * Not integrated Spirit and mapApp admin statuses.
-
 
 
 ##FROM TRISALYN
