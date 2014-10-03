@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.gis.db import models
 
 import datetime
+from time import strftime, gmtime
 from django.utils import timezone
 
 
@@ -122,15 +123,18 @@ TERRAIN_CHOICES = (
     ('Flat', 'Flat'),
     ('Don\'t remember', 'I don\'t remember')
 )
-AGE_CHOICES = (
-    ("<19", "19 or under"),
-    ("19-29","19 - 29"),
-    ("30-39", "30 - 39"),
-    ("40-49", "40 - 49"),
-    ("50-59","50 - 59"),
-    ("60-69","60 - 69"),
-    (">70", "70 or over")
-)
+
+# AGE_CHOICES = (("2001", "2001"), ("2000", "2000") ... ("1915", "1915")) Based on current year minus youngest age a person can report and year for 100-year-old
+YOUNGEST_AGE = 13
+youngestYear = int(strftime("%Y", gmtime())) - YOUNGEST_AGE
+AGE_CHOICES = []
+for y in xrange(100):
+    AGE_CHOICES.append((str(youngestYear-y), str(youngestYear-y))) 
+
+from calendar import month_name as month
+MONTH_CHOICES = [(str(i+1), str(month[i+1])) for i in xrange(12)]
+    
+
 SEX_CHOICES = (
     ('M', 'Male'), 
     ('F', 'Female'),
@@ -140,6 +144,23 @@ BOOLEAN_CHOICES = (
     ('Y', 'Yes'), 
     ('N', 'No'), 
     ('I don\'t know', 'I don\'t know')
+)
+CARDINAL_DIRECTIONS_CHOICES = (
+    ('N','N'),
+    ('NE','NE'),
+    ('E','E'),
+    ('SE','SE'),
+    ('S','S'),
+    ('SW','SW'),
+    ('W','W'),
+    ('NW', 'NW'),
+    ('I don\'t know', 'I don\'t know')
+)
+TURNING_CHOICES = (
+    ('Heading straight','Heading straight'),
+    ('Turning left','Turning left'),
+    ('Turning right','Turning right'),
+    ('I don\'t remember', 'I don\'t remember')
 )
 
 
@@ -195,9 +216,16 @@ class Incident(models.Model):
     ############## PERSONAL DETAILS FIELDS
     # Personal details about the participant (all optional)
     age = models.CharField(
-        'Please tell us which age category you fit into', 
+        'What is your birth year?', 
         max_length=15, 
         choices=AGE_CHOICES, 
+        blank=True, 
+        null=True
+    ) 
+    birthmonth = models.CharField(
+        'What is your birth month?', 
+        max_length=15, 
+        choices=MONTH_CHOICES, 
         blank=True, 
         null=True
     ) 
@@ -272,6 +300,20 @@ class Incident(models.Model):
         max_length=50, 
         choices=TERRAIN_CHOICES, 
         blank=True, 
+        null=True
+    )
+    direction = models.CharField(
+        'What direction were you heading?', 
+        max_length=50, 
+        choices=CARDINAL_DIRECTIONS_CHOICES, 
+        blank=True, 
+        null=True
+    )
+    turning = models.CharField(
+        'How were you moving?',
+        max_length=50,
+        choices=TURNING_CHOICES,
+        blank=True,
         null=True
     )
     ########################

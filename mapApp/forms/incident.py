@@ -15,7 +15,7 @@ class IncidentForm(forms.ModelForm):
         HTML("<br>"),
         Accordion(
             AccordionGroup(
-                'Incident',
+                'Incident Details',
                 Field('geom', type="hidden", id="point"), # Coords passed after click on map from static/mapApp/js/map.js
                 Field('incident_date', id="incident_date", template='mapApp/util/datepicker.html', autocomplete='off'),
                 Field('incident'),
@@ -31,6 +31,8 @@ class IncidentForm(forms.ModelForm):
                 Field('riding_on'),
                 Field('bike_lights'),
                 Field('terrain'),
+                Field('direction'),
+                Field('turning'),
             ),
             AccordionGroup(
                 'Description',
@@ -40,6 +42,7 @@ class IncidentForm(forms.ModelForm):
             AccordionGroup(
                 'Personal Details',
                 Field('age'),
+                Field('birthmonth'),
                 Field('sex'),
                 Field('regular_cyclist'),
                 Field('helmet'),
@@ -75,3 +78,7 @@ class IncidentForm(forms.ModelForm):
 
     class Meta:
         model = Incident
+        fields = ['geom', 'incident_date', 'incident', 'incident_with', 'injury', 'trip_purpose', 'road_conditions', 
+            'sightlines', 'cars_on_roadside', 'riding_on', 'bike_lights', 'terrain', 'direction', 'turning', 
+            'incident_detail', 'age', 'birthmonth', 'sex', 'regular_cyclist', 'helmet', 'intoxicated'
+        ]

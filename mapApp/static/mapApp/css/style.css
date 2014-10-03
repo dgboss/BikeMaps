@@ -1,6 +1,6 @@
 @font-face { 
-	font-family: timeburner; 
-	src: url('../font/timeburner_regular.ttf');
+	font-family: faktos; 
+	src: url('../font/faktos.regular.ttf');
 }
 
 html {
@@ -63,7 +63,24 @@ textarea {
 }
 
 .navbar {
-	font-family: timeburner;
+	font-family: faktos;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #00aeac;
+	-webkit-text-stroke: 1px #2c3e50;
+}
+.navbar-default .navbar-nav>li>a>span {
+	-webkit-text-stroke: 0px;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover {
+	color: #f18904;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -72,7 +89,7 @@ textarea {
 }
 
 body h1{
-	font-family: timeburner;
+	font-family: faktos;
 }
 
 .marker-cluster-pie g.arc{
@@ -287,4 +304,17 @@ li a {
 
 .terms-conditions h1{
 	font-size: 32px;
+}
+
+/* Mobile info popup on mobile phones */
+.mobile-tip{
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	right: 0px;
+	height: 23px;
+}
+.mobile-tip .close{
+	margin-top: -3px;
+	margin-right: 2px;
 }

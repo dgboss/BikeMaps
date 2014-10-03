@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   
   <title>{% block title %}{% endblock %}</title>
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'mapApp/images/bikemaps_web_icon.ico' %}" />
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'mapApp/images/BikeMapsORG_Logo.ico' %}" />
 
   <!-- LOAD CSS -->
   {% block headerCSS %} {% endblock %}
@@ -47,7 +47,7 @@
   <div id="message">
       {% if messages %}
           {% for message in messages %}
-          <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissable">
+          <div id="data-post-alert" class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissable">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <center>{{ message | safe }}</center>
           </div>
@@ -60,7 +60,14 @@
   <!-- Fade out message -->
   <script>
     $(window).load(function(){
-      setTimeout(function(){ $('.alert').fadeOut() }, 7000);
+      setTimeout(function(){ $('#data-post-alert').fadeOut() }, 7000);
+    });
+    // Prevent multiple submits of forms by disabling the button on single click
+    $(document).ready(function() {
+      $('input[type=submit]').click(function(){
+        $(this).prop("disabled", true);
+        $(this).closest("form").trigger('submit');
+      });  
     });
   </script>
 
