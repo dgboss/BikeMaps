@@ -66,7 +66,7 @@ var incidentData = new L.MarkerClusterGroup({
     //     blur: 20,
     // }),
     heatMap = new L.TileLayer.WebGLHeatMap({ 
-        size: 300,
+        size: 175,
         opacity: 0.4
         // alphaRange: 0.5
     }),
