@@ -32,7 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     # forum
     'spirit',
     'haystack',
@@ -44,7 +44,10 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'djgeojson',
     'crispy_forms',
-    'mapApp'
+    'mapApp',
+    
+    # Blog app
+    'blog'
 )
 
 # Database
@@ -57,7 +60,7 @@ DATABASES = {
         'USER': 'postgres'
         # 'PASSWORD': 'SUPER_SECRET'
 
-        
+
     }
 }
 
