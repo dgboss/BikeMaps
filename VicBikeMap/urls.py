@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('mapApp.urls', namespace="mapApp")),
     url(r'^forum/', include('spirit.urls', namespace="spirit", app_name="spirit")),
+    url(r'^blog/', include('blog.urls', namespace="blog", app_name="blog")),
 )
 
 # urlpatterns += patterns('',
