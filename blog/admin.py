@@ -21,10 +21,10 @@ admin.site.register(Category, CategoryAdmin)
 class BlogPostAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
-    list_display = ('title', 'author', 'category', 'is_draft', 'is_removed', 'slug')
+    list_display = ('title', 'author', 'category', 'is_draft', 'post_date', 'is_removed', 'slug')
 
     fieldsets = [
-	    ('Basic', {'fields': ['title', 'author', 'is_draft', 'category', 'is_removed', 'slug']}),
+	    ('Basic', {'fields': ['title', 'author', 'is_draft', 'category', 'date', 'is_removed', 'slug']}),
 	    ('Post', {'fields': ['body'], 'classes':['collapse']}),
     ]
 admin.site.register(BlogPost, BlogPostAdmin)

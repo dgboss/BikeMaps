@@ -23,7 +23,11 @@
         </div>
 
         <div class="col-xs-2">
-            <h3>Something for Categories over here</h3>
+
+            {% for category in categories %}
+            <p>{{ category.title }}</p>
+            {% endfor %}
+
         </div>
 
     </div>
