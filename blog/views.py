@@ -8,7 +8,8 @@ from blog.models import BlogPost
 
 
 def index(request):
-	context = {'phrase': "hello world"}
+	posts = BlogPost.objects.all()
+	context = {'posts': posts}
 
 	return render(request, 'blog/index.html', context)
 
