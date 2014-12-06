@@ -7,12 +7,15 @@ from django.utils.text import slugify
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=75)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     body = models.TextField(null=True, blank=True)
+
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    post_date = models.DateTimeField(auto_now_add=True)
+
     category = models.ForeignKey('blog.Category', related_name='categoryPost', null=True, blank=True)
 
+    is_draft = models.BooleanField(default=True)
     is_removed = models.BooleanField(default=False)
-    is_draft = models.BooleanField(default=False)
 
     slug = models.SlugField(unique=True)
 

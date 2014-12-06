@@ -12,8 +12,8 @@ class Category(models.Model):
 
     description = models.CharField(max_length=255, blank=True)
 
+    is_private = models.BooleanField(default=True)
     is_removed = models.BooleanField(default=False)
-    is_private = models.BooleanField(default=False)
 
     slug = models.SlugField(unique=True)
 
