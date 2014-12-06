@@ -20,6 +20,6 @@ def index(request):
 def post(request, slug):
     post = get_object_or_404(BlogPost, slug=slug)
 
-    return render(request, 'blog/index.html', {
+    return render(request, 'blog/post.html', {
         'post': post,
     })
