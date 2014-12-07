@@ -1,11 +1,10 @@
 from django.shortcuts import get_object_or_404, render, render_to_response
 
 # Import models
-from blog.models import BlogPost
-from blog.models import Category
+from blog.models import BlogPost, Category
 
 # Import forms
-# from mapApp.forms.incident import IncidentForm
+# from blog.forms import IncidentForm
 
 
 def index(request, page=0):
@@ -31,4 +30,4 @@ def post(request, slug):
 
 
 def create(request):
-	return render(request, 'blog/index.html', context)
+	return render_to_response('blog/create.html')

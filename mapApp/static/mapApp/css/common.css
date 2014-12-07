@@ -14,9 +14,9 @@ body {
 	max-width: 100%;
 }
 
-button {
+/*button {
   margin: 0 5px;
-}
+}*/
 
 textarea {
 	resize: none; /* removes resize handle from text area inputs */
