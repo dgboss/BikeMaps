@@ -8,6 +8,8 @@ from django.utils.text import slugify
 class BlogPost(models.Model):
     title = models.CharField(max_length=75)
     body = models.TextField(null=True, blank=True)
+    body_html = models.TextField(null=True, blank=True)
+
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     post_date = models.DateTimeField(auto_now_add=True)

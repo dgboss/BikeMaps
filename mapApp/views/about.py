@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core.mail import BadHeaderError, EmailMessage
 
 # Forms
-from mapApp.forms.contact import EmailForm
+from mapApp.forms import EmailForm
 
 
 def about(request):

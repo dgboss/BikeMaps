@@ -3,10 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # Import models
-from mapApp.models.incident import Incident
-from mapApp.models.hazard import Hazard
-from mapApp.models.theft import Theft
-from mapApp.models.alert_area import AlertArea
+from mapApp.models import Incident, Hazard, Theft, AlertArea
 
 import datetime
 

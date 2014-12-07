@@ -3,13 +3,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # Import models
-from mapApp.models.incident import Incident
-from mapApp.models.hazard import Hazard
-from mapApp.models.theft import Theft
-from mapApp.models.alert_area import AlertArea
+from mapApp.models import Incident, Hazard, Theft, AlertArea, IncidentNotification, HazardNotification, TheftNotification
 
 from django.contrib.auth.models import User
-from mapApp.models.alert_notification import IncidentNotification, HazardNotification, TheftNotification
 
 @login_required
 def stats(request):

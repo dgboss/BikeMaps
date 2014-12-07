@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.template import loader, Context
 
 from django.contrib.auth.models import User
-from mapApp.models.alert_notification import IncidentNotification, HazardNotification, TheftNotification
+from mapApp.models import IncidentNotification, HazardNotification, TheftNotification
 
 # DISABLED!
 class UserAlertEmails(CronJobBase):
@@ -23,11 +23,11 @@ class UserAlertEmails(CronJobBase):
 		# incidentPolys = IncidentNotification.objects.filter(emailed=False)
 		# hazardPolys = HazardNotification.objects.filter(emailed=False)
 		# theftPolys = TheftNotification.objects.filter(emailed=False)
-		
+
 		# # Get a list of distinct users that need to be emailed
 		# userSet = list(set(
-		# 	[poly.user for poly in incidentPolys] + 
-		# 	[poly.user for poly in hazardPolys] + 
+		# 	[poly.user for poly in incidentPolys] +
+		# 	[poly.user for poly in hazardPolys] +
 		# 	[poly.user for poly in theftPolys]
 		# ))
 
@@ -48,12 +48,12 @@ class UserAlertEmails(CronJobBase):
 
 		# 	# Add the points to the email message
 		# 	template = loader.get_template('mapApp/email.html')
-		# 	d = Context({ 
-		# 		'user': user, 
-		# 		'incidentCount': incidentPoints.count(), 
-		# 		'nearmissCount': nearmissPoints.count(), 
-		# 		'hazardCount': hazardPoints.count(), 
-		# 		'theftCount': theftPoints.count() 
+		# 	d = Context({
+		# 		'user': user,
+		# 		'incidentCount': incidentPoints.count(),
+		# 		'nearmissCount': nearmissPoints.count(),
+		# 		'hazardCount': hazardPoints.count(),
+		# 		'theftCount': theftPoints.count()
 		# 	})
 		# 	html_content = template.render(d)
 

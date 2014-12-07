@@ -1,11 +1,11 @@
 from django.contrib.gis import admin
 
 # Register models
-from mapApp.models.incident import Incident
-from mapApp.models.hazard import Hazard
-from mapApp.models.theft import Theft
-# from mapApp.models.alert_area import AlertArea
-# from mapApp.models.alert_notification import IncidentNotification, HazardNotification, TheftNotification
+from mapApp.models import Incident
+from mapApp.models import Hazard
+from mapApp.models import Theft
+# from mapApp.models import AlertArea
+# from mapApp.models import IncidentNotification, HazardNotification, TheftNotification
 
 from spirit.models import User
 admin.site.register(User)

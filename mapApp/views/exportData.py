@@ -7,9 +7,7 @@ import time
 from spirit.utils.decorators import administrator_required
 
 # Models
-from mapApp.models.incident import Incident
-from mapApp.models.hazard import Hazard
-from mapApp.models.theft import Theft
+from mapApp.models import Incident, Hazard, Theft
 
 
 @administrator_required

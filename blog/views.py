@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, render_to_response
 
 # Import models
 from blog.models import BlogPost
@@ -8,8 +8,7 @@ from blog.models import Category
 # from mapApp.forms.incident import IncidentForm
 
 
-def index(request, page):
-	if not page: page = 0
+def index(request, page=0):
 	page = int(page)
 	index = page * 5
 	offset = index + 5
@@ -19,14 +18,17 @@ def index(request, page):
 		'categories': Category.objects.all(),
 		'next_page': page+1,
 		'prev_page': page-1,
+
 	}
 
 	return render(request, 'blog/index.html', context)
 
 
 def post(request, slug):
-    post = get_object_or_404(BlogPost, slug=slug)
-
-    return render(request, 'blog/post.html', {
-        'post': post,
+    return render_to_response('blog/post.html', {
+        'post': get_object_or_404(BlogPost, slug=slug),
     })
+
+
+def create(request):
+	return render(request, 'blog/index.html', context)
