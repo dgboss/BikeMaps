@@ -2,42 +2,64 @@
 
 {% block title %}BikeMaps Blog{% endblock %}
 
+{% load webdesign %}
+
+
+{% block headerCSS %}
+<!-- CSS here -->
+{% endblock %}
+
+
+{% block headerJS %}
+<!-- JS here -->
+{% endblock %}
+
+
 {% block body %}
-
-
 <div class="container">
     <div class="row">
         <h1>BikeMaps Blog</h1>
         <div class="col-xs-10">
 
+            <!-- Blog Posts -->
             {% for post in posts %}
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2 class="text-center"><a href="{% url 'blog:post' slug=post.slug %}">{{ post.title|safe }}</a></h2>
-                    <div class="text-right">
-                        <em>By: {{ post.author }}</em>
-                    </div>
                 </div>
                 <div class="panel-body">
                     {{ post.body|safe }}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    {% lorem 2 p random %}
                 </div>
-                <div class="panel-footer">
-                    <div class="text-right">
+                <div class="panel-footer container-fluid">
+                    <div class="text-left col-xs-6">
+                        <em>By: {{ post.author }}</em>
+                    </div>
+                    <div class="text-right col-xs-6">
                         <em>{{ post.post_date }}</em>
                     </div>
                 </div>
             </div>
             {% endfor %}
 
+            <!-- Next and Previous Buttons -->
+            <nav>
+                <ul class="pager">
+                    <li class="next"><a href="{% url 'blog:index' page=next_page %}">Older <span aria-hidden="true">&rarr;</span></a></li>
+                    {% if prev_page < 0 %}
+                    <li class="previous disabled"><a><span aria-hidden="true">&larr;</span> Newer</a></li>
+                    {% else %}
+                    <li class="previous"><a href="{% url 'blog:index' page=prev_page %}"><span aria-hidden="true">&larr;</span> Newer</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
 
+        <!-- Category List -->
         <div class="col-xs-2">
-
             {% for category in categories %}
             <p>{{ category.title }}</p>
             {% endfor %}
-
         </div>
 
     </div>

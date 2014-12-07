@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.webdesign',
 
     # forum
     'spirit',
@@ -45,9 +46,9 @@ INSTALLED_APPS = (
     'djgeojson',
     'crispy_forms',
     'mapApp',
-    
+
     # Blog app
-    'blog'
+    'blog',
 )
 
 # Database

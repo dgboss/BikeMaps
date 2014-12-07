@@ -13,16 +13,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2 class="text-center">{{ post.title|safe }}</h2>
-                    <div class="text-right">
-                        <em>By: {{ post.author }}</em>
-                    </div>
                 </div>
                 <div class="panel-body">
                     {{ post.body|safe }}
 
                 </div>
-                <div class="panel-footer">
-                    <div class="text-right">
+                <div class="panel-footer container-fluid">
+                    <div class="text-left col-xs-6">
+                        <em>By: {{ post.author }}</em>
+                    </div>
+                    <div class="text-right col-xs-6">
                         <em>{{ post.post_date }}</em>
                     </div>
                 </div>

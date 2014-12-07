@@ -8,10 +8,17 @@ from blog.models import Category
 # from mapApp.forms.incident import IncidentForm
 
 
-def index(request):
+def index(request, page):
+	if not page: page = 0
+	page = int(page)
+	index = page * 5
+	offset = index + 5
+
 	context = {
-		'posts': BlogPost.objects.all(),
-		'categories': Category.objects.all()
+		'posts': BlogPost.objects.all()[index:offset],
+		'categories': Category.objects.all(),
+		'next_page': page+1,
+		'prev_page': page-1,
 	}
 
 	return render(request, 'blog/index.html', context)
