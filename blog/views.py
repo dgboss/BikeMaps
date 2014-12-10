@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render, render_to_response
 from blog.models import BlogPost, Category
 
 # Import forms
-# from blog.forms import IncidentForm
+from blog.forms import BlogPostForm
 
 
 def index(request, page=0):
@@ -37,4 +37,4 @@ def post(request, slug):
 
 
 def create(request):
-	return render_to_response('blog/create.html')
+	return render_to_response('blog/create.html', {"post_form": BlogPostForm})

@@ -1,14 +1,12 @@
 from django import forms
 from django.utils.text import slugify
 
-from .models import BlogPost
+from blog.models import BlogPost
 
-class AddForm(forms.ModelForm):
+class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = (
-            'title'
-        )
+        fields = ['title', 'body', 'body_html', 'author', 'category', 'is_draft', 'is_removed', 'slug']
 
     def save(self):
         instance = super(AddForm, self).save(commit=False)
