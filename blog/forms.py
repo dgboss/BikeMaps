@@ -6,7 +6,7 @@ from blog.models import BlogPost
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['title', 'body', 'body_html', 'author', 'category', 'is_draft', 'is_removed', 'slug']
+        fields = ['title', 'body', 'body_html', 'category', 'is_draft', 'slug']
 
     def save(self):
         instance = super(AddForm, self).save(commit=False)

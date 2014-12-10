@@ -31,10 +31,10 @@ def index(request, page=0):
 
 
 def post(request, slug):
-    return render_to_response('blog/post.html', {
+    return render(request, 'blog/post.html', {
         'post': get_object_or_404(BlogPost, slug=slug),
     })
 
 
 def create(request):
-	return render_to_response('blog/create.html', {"post_form": BlogPostForm})
+	return render(request, 'blog/create.html', {"post_form": BlogPostForm})

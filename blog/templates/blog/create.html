@@ -2,7 +2,8 @@
 TODO
   Implement markdown buttons
   Create form to submit this data to the database
-  Time release button
+  Timed release widget
+  Create a post management page to remove and release posts
 
 -->
 
@@ -10,7 +11,7 @@ TODO
 
 {% block title %}BikeMaps Blog{% endblock %}
 
-{% load webdesign %}
+{% load webdesign staticfiles %}
 
 
 {% block headerCSS %}
@@ -20,10 +21,27 @@ TODO
 
 {% block headerJS %}
 <!-- JS here -->
+  <!-- moment.js date library -->
+  <script src="{% static 'moment/moment.min.js' %}"></script>
 {% endblock %}
 
 
 {% block body %}
+<style media="screen">
+  #id_title{
+    background-color: transparent;
+    border: 1px solid;
+  }
+  #id_category{
+    background-color: transparent;
+    border: 1px solid;
+  }
+  #id_body{
+    width: 100%;
+    border: 1px solid;
+  }
+</style>
+
 <div class="container">
     <div class="row">
         <h1>New Blog Post</h1>
@@ -31,21 +49,24 @@ TODO
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h2 class="text-center"><a>Title: {{ post_form.title }}</a></h2>
+                    <h5 class="text-center"><a>Category: {{ post_form.category }}</a></h5>
                 </div>
                 <div class="panel-body">
-                    Body: {{ post_form.body }}
+                    <p>Body:</p>
+                    <p>{{ post_form.body }}</p>
 
-                    <button type="button" class="btn btn-success pull-right">Save</button>
                 </div>
                 <div class="panel-footer container-fluid">
                     <div class="text-left col-xs-6">
-                        <em>By: Auto author fill</em>
+                        <em>By: {{ request.user }}</em>
                     </div>
                     <div class="text-right col-xs-6">
-                        <em> Todays date </em>
+                        <em id="post-date"> Post Date: </em>
                     </div>
                 </div>
             </div>
+            <!-- Save button -->
+            <button type="button" class="btn btn-success pull-right">Save</button>
         </div>
 
         <div class="col-xs-2">
@@ -59,12 +80,19 @@ TODO
             </div>
 
             <br>
-            Save as draft checkbox
+            {{ post_form.is_draft }} Draft
             <br>
-            Timed release option
+            Slug: {{ post_form.slug }}
+            <br>
+            Timed release widget here
         </div>
 
     </div>
 </div>
+
+<script charset="utf-8">
+  var date = moment().format('MMM. DD, YYYY, hh:mm a')
+  $("#post-date").append(date);
+</script>
 
 {% endblock %}
