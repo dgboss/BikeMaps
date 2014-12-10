@@ -1,3 +1,9 @@
+<!--
+TODO
+  Implement create page
+  Render markdown to html
+-->
+
 {% extends "mapApp/base.html" %}
 
 {% block title %}BikeMaps Blog{% endblock %}
@@ -45,12 +51,12 @@
             <!-- Next and Previous Buttons -->
             <nav>
                 <ul class="pager">
-                    <li class="next"><a href="{% url 'blog:index' page=next_page %}">Older <span aria-hidden="true">&rarr;</span></a></li>
-                    {% if prev_page < 0 %}
-                    <li class="previous disabled"><a><span aria-hidden="true">&larr;</span> Newer</a></li>
-                    {% else %}
-                    <li class="previous"><a href="{% url 'blog:index' page=prev_page %}"><span aria-hidden="true">&larr;</span> Newer</a></li>
-                    {% endif %}
+                    <li class="next {% if not next_page_exists %}hidden{% endif %}">
+                      <a href="{% url 'blog:index' page=next_page %}">Older <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                    <li class="previous {% if not prev_page_exists %}hidden{% endif %}">
+                      <a href="{% url 'blog:index' page=prev_page %}"><span aria-hidden="true">&larr;</span> Newer</a>
+                    </li>
                 </ul>
             </nav>
         </div>
