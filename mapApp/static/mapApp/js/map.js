@@ -136,24 +136,6 @@ function getPolygon(latlng, pk) {
     }));
 };
 
-// Purpose: A function for adding official report data efficiently and asynchronously.
-//    Accepts the geojson feature and the datatype (unused but added for potential future requirements) and initiates the spinner while data is loading
-function loadGeojsonAjax(src, type){
-  incidentData.fire("data:loading");
-  L.Util.ajax(src).then(function(data){
-    incidentData.fire("data:loaded");
-    var g = L.geoJson(data, {
-      pointToLayer: function(feature, latlng) {
-        heatMap.addLatLng(latlng);
-        return L.marker(latlng, {
-          icon: icons["officialIcon"],
-          ftype: type
-        }).addTo(incidentData);
-      }
-    });
-    officialData.push.apply(officialData, g.getLayers());
-  });
-};
 
 // Purpose: Initializes the Pie chart cluster icons by getting the needed attributes from each cluster
 //		and passing them to the pieChart function
@@ -329,6 +311,7 @@ function makeNiceDate(d) {
     return getMonthFromInt(date[1]).slice(0, 3) + ". " + date[2] + ", " + date[0] + ", " + time[0] + ":" + time[1] + (pm >= 1 ? "pm" : "am");
 };
 
+
 // Purpose: Convert a given geojson dataset to a MakiMarker point layer
 //  and add all latlngs to the heatmap and bind appropriate popups to markers
 function geojsonMarker(data, type) {
@@ -342,4 +325,18 @@ function geojsonMarker(data, type) {
             })
         },
     });
+};
+
+
+// Purpose: A function for adding official report data efficiently and asynchronously.
+//    Accepts the geojson feature and the datatype (unused but added for potential future requirements) and initiates the spinner while data is loading
+function loadGeojsonAjax(src, type){
+  // start spinner
+  incidentData.fire("data:loading");
+  L.Util.ajax(src).then(function(data){
+    // stop spinner
+    incidentData.fire("data:loaded");
+    // set marker styles
+    geojsonMarker(data, type).addTo(incidentData);
+  });
 };

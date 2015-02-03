@@ -97,8 +97,8 @@
         var thefts = geojsonMarker({{ thefts|geojsonfeature:"theft,theft_date"|safe }}, "theft").addTo(incidentData).getLayers();
 
         // Add all geojson auxiliary data
-        loadGeojsonAjax("{% static 'mapApp/data/policeData.geojson' %}", "police");
-        loadGeojsonAjax("{% static 'mapApp/data/icbcData.geojson' %}", "icbc");
+        loadGeojsonAjax("{% static 'mapApp/data/policeData.geojson' %}", "official");
+        loadGeojsonAjax("{% static 'mapApp/data/icbcData.geojson' %}", "official");
 
         // Load user alert areas from the database
         {% for polygon in geofences %}
@@ -224,10 +224,10 @@
           // Add unfiltered data back
           function resetPoints(){
             incidentData.clearLayers();
-            collisions = collisionsUnfiltered,
-            nearmisses = nearmissesUnfiltered,
-            hazards = hazardsUnfiltered,
-            thefts = theftsUnfiltered,
+            collisions = collisionsUnfiltered;
+            nearmisses = nearmissesUnfiltered;
+            hazards = hazardsUnfiltered;
+            thefts = theftsUnfiltered;
             officialData = officialUnfiltered;
             $("#collisionCheckbox").is(":checked") && incidentData.addLayers(collisions);
             $("#nearmissCheckbox").is(":checked") && incidentData.addLayers(nearmisses);
@@ -263,6 +263,8 @@
           });
           //^^^^^^^^^^^^^^^^^^^^^^^^
         });
+
+
     </script>
 
     <!-- Add modal help html -->
